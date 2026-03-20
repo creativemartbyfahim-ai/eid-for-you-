@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid Animation</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+  color: white;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Intro text */
+.intro {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  font-size: 28px;
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  0% {opacity:1;}
+  80% {opacity:1;}
+  100% {opacity:0;}
+}
+
+/* Main content */
+.main {
+  display: none;
+  margin-top: 50px;
+}
+
+/* Floating animation */
+.card {
+  width: 220px;
+  height: 300px;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  animation: float 3s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(255,255,255,0.3);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes float {
+  0% {transform: translateY(0px);}
+  50% {transform: translateY(-20px);}
+  100% {transform: translateY(0px);}
+}
+
+/* Upload button */
+input {
+  margin-top: 20px;
+}
+
+/* Moon */
+.moon {
+  position: absolute;
+  top: 50px;
+  right: 40px;
+  width: 80px;
+  height: 80px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 40px white;
+}
+
+/* Floating emoji */
+.emoji {
+  position: absolute;
+  font-size: 24px;
+  animation: move 10s linear infinite;
+}
+
+@keyframes move {
+  from {transform: translateY(100vh);}
+  to {transform: translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="intro">POV: It's Eid Day 🌙✨</div>
+
+<div class="main" id="main">
+  <div class="moon"></div>
+
+  <h2>Eid Mubarak 🌙</h2>
+
+  <div class="card">
+    <img id="preview" src="https://i.ibb.co/4pDNDk1/avatar.png">
+  </div>
+
+  <input type="file" accept="image/*" onchange="loadImage(event)">
+</div>
+
+<script>
+setTimeout(()=>{
+  document.querySelector(".intro").style.display = "none";
+  document.getElementById("main").style.display = "block";
+},3000);
+
+function loadImage(event){
+  document.getElementById("preview").src = URL.createObjectURL(event.target.files[0]);
+}
+
+// emoji generate
+for(let i=0;i<20;i++){
+  let e = document.createElement("div");
+  e.className="emoji";
+  e.style.left=Math.random()*100+"vw";
+  e.style.animationDuration=(5+Math.random()*5)+"s";
+  e.innerHTML="✨";
+  document.body.appendChild(e);
+}
+</script>
+
+</body>
+  </html>
